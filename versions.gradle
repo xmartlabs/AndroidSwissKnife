@@ -47,7 +47,6 @@ def androidXTest = [:]
 androidXTest.espresso = "androidx.test.espresso:espresso-core:$versions.androidXTestEspresso"
 androidXTest.junit = "androidx.test.ext:junit:$versions.androidXTestJunit"
 
-
 def androidXNavigation = [:]
 androidXNavigation.fragment = "androidx.navigation:navigation-fragment-ktx:$versions.archNavigationArchComponent"
 androidXNavigation.ui = "androidx.navigation:navigation-ui-ktx:$versions.archNavigationArchComponent"
