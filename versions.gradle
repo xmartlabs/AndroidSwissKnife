@@ -1,0 +1,81 @@
+/**
+ * Shared file between builds so that they can all use the same dependencies and
+ * maven repositories.
+ **/
+
+def androidVersions = [:]
+androidVersions.minSdk = 21
+androidVersions.compileSdk = 29
+androidVersions.buildTools = '29.0.3'
+androidVersions.targetSdk = 29
+ext.androidVersions = androidVersions
+
+ext.deps = [:]
+def versions = [:]
+versions.androidXAnnotations = "1.1.0"
+versions.androidXAppCompact = "1.1.0"
+versions.androidXConstraintLayout = "1.1.3"
+versions.androidXCore = "1.2.0"
+versions.androidXTestEspresso = "3.2.0"
+versions.androidXTestJunit = "1.1.1"
+versions.archNavigationArchComponent = "2.2.2"
+versions.detekt = "1.8.0"
+versions.gradle = "3.6.3"
+versions.gson = "2.8.6"
+versions.material = "1.1.0"
+versions.junit = "4.13"
+versions.kotlin = "1.3.72"
+versions.timber = "4.7.1"
+versions.tooLargeTool = "915ad99e83"
+ext.versions = versions
+
+def deps = [:]
+deps.junit = "junit:junit:$versions.junit"
+deps.material = "com.google.android.material:material:$versions.material"
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.tooLargeTool = "com.github.xmartlabs:toolargetool:$versions.tooLargeTool"
+
+
+def kotlin = [:]
+kotlin.core = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+kotlin.coroutines = [:]
+kotlin.coroutines.core = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlinCoroutines"
+kotlin.reflect = "org.jetbrains.kotlin:kotlin-reflect"
+deps.kotlin = kotlin
+
+def androidXTest = [:]
+androidXTest.espresso = "androidx.test.espresso:espresso-core:$versions.androidXTestEspresso"
+androidXTest.junit = "androidx.test.ext:junit:$versions.androidXTestJunit"
+
+
+def androidXNavigation = [:]
+androidXNavigation.fragment = "androidx.navigation:navigation-fragment-ktx:$versions.archNavigationArchComponent"
+androidXNavigation.ui = "androidx.navigation:navigation-ui-ktx:$versions.archNavigationArchComponent"
+
+def androidX = [:]
+androidX.navigation = androidXNavigation
+androidX.test = androidXTest
+androidX.annotations = "androidx.annotation:annotation:$versions.androidXAnnotations"
+androidX.appcompat = "androidx.appcompat:appcompat:$versions.androidXAppCompact"
+androidX.constraintLayout = "androidx.constraintlayout:constraintlayout:$versions.androidXConstraintLayout"
+androidX.core = "androidx.core:core-ktx:$versions.androidXCore"
+deps.androidX = androidX
+
+
+ext.deps = deps
+
+ext.buildscriptDeps = [:]
+buildscriptDeps.detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt"
+buildscriptDeps.gradle = "com.android.tools.build:gradle:$versions.gradle"
+buildscriptDeps.kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+buildscriptDeps.kotlinExtensions = "org.jetbrains.kotlin:kotlin-android-extensions:$versions.kotlin"
+ext.buildscriptDeps = buildscriptDeps
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.mavenCentral()
+    handler.gradlePluginPortal()
+}
+
+ext.addRepos = this.&addRepos
+
