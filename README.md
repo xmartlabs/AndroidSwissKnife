@@ -1,5 +1,6 @@
 # AndroidSwissKnife
 ![Check and compile](https://github.com/xmartlabs/AndroidSwissKnife/workflows/Check%20and%20compile/badge.svg)
+![Check and compile](https://github.com/xmartlabs/AndroidSwissKnife/workflows/Check%20and%20compile/badge.svg?branch=master)
 [![Release](https://jitpack.io/v/xmartlabs/AndroidSwissKnife.svg)](https://jitpack.io/#xmartlabs/AndroidSwissKnife)
 
 A library that contains a series of extensions, helpers, and useful classes used in most of [Xmartlabs' Android Projects](https://www.xmartlabs.com/).
