@@ -1,0 +1,39 @@
+name: Check master Jitpack's dependency
+on:
+  push:
+    branches:
+      - master
+jobs:
+  check_jitpack_master_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache gradle cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Cache gradle wrapper
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradlewrapper-${{ hashFiles('**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradlegradlewrapper-
+      - name: Cache android cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.android/build-cache
+          key: ${{ runner.os }}-android-cache
+          restore-keys: |
+            ${{ runner.os }}-gradlegradlewrapper-
+      - name: Use master dependencies in app
+        run: |
+          perl -i -pe "s/project\(\"\:core\"\)/\"com.github.xmartlabs.AndroidSwissKnife:core:master-SNAPSHOT\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:navigation\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation:master-SNAPSHOT\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:navigation-debug\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation-debug:master-SNAPSHOT\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:reflection\"\)/\"com.github.xmartlabs.AndroidSwissKnife:reflection:master-SNAPSHOT\"/gi" app/build.gradle
+      - name: Build Sample app with master dependencies
+        run: ./gradlew build -Dhttp.socketTimeout=80000 -Dhttp.connectionTimeout=80000 --refresh-dependencies

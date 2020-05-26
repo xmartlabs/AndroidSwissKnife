@@ -1,0 +1,6 @@
+rootProject.name='Android Swiss Knife'
+include ':app'
+include ':navigation'
+include ':core'
+include ':navigation-debug'
+include ':reflection'

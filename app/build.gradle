@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion androidVersions.compileSdk
+    buildToolsVersion androidVersions.buildTools
+
+    defaultConfig {
+        applicationId "com.xmartlabs.swissknife.sample"
+        minSdkVersion androidVersions.minSdk
+        targetSdkVersion androidVersions.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation project(":core")
+    implementation project(":navigation")
+    implementation project(":navigation-debug")
+    implementation project(":reflection")
+
+    implementation deps.androidX.appcompat
+    implementation deps.androidX.constraintLayout
+    implementation deps.androidX.core
+    implementation deps.androidX.navigation.fragment
+    implementation deps.androidX.navigation.ui
+    implementation deps.kotlin.core
+    implementation deps.material
+    implementation deps.timber
+
+    testImplementation deps.junit
+    androidTestImplementation deps.androidX.test.junit
+    androidTestImplementation deps.androidX.test.espresso
+}
