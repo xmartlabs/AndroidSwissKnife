@@ -31,10 +31,10 @@ jobs:
             ${{ runner.os }}-gradlegradlewrapper-
       - name: Use master dependencies in app
         run: |
-          currentCommit=$(git rev-parse HEAD | cut -c2-10)
+          currentCommit=$(git rev-parse HEAD | cut -c1-10)
           perl -i -pe "s/project\(\"\:core\"\)/\"com.github.xmartlabs.AndroidSwissKnife:core:$currentCommit\"/gi" app/build.gradle
           perl -i -pe "s/project\(\"\:navigation\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation:$currentCommit\"/gi" app/build.gradle
           perl -i -pe "s/project\(\"\:navigation-debug\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation-debug:$currentCommit\"/gi" app/build.gradle
           perl -i -pe "s/project\(\"\:reflection\"\)/\"com.github.xmartlabs.AndroidSwissKnife:reflection:$currentCommit\"/gi" app/build.gradle
       - name: Build Sample app with master dependencies
-        run: ./gradlew build -Dhttp.socketTimeout=80000 -Dhttp.connectionTimeout=80000 --refresh-dependencies
+        run: ./gradlew build -Dhttp.socketTimeout=100000 -Dhttp.connectionTimeout=100000 --refresh-dependencies
