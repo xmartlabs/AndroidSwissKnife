@@ -4,7 +4,7 @@ on:
     branches:
       - master
 jobs:
-  check_jitpack_master_build:
+  check_jitpack_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -31,9 +31,10 @@ jobs:
             ${{ runner.os }}-gradlegradlewrapper-
       - name: Use master dependencies in app
         run: |
-          perl -i -pe "s/project\(\"\:core\"\)/\"com.github.xmartlabs.AndroidSwissKnife:core:master-SNAPSHOT\"/gi" app/build.gradle
-          perl -i -pe "s/project\(\"\:navigation\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation:master-SNAPSHOT\"/gi" app/build.gradle
-          perl -i -pe "s/project\(\"\:navigation-debug\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation-debug:master-SNAPSHOT\"/gi" app/build.gradle
-          perl -i -pe "s/project\(\"\:reflection\"\)/\"com.github.xmartlabs.AndroidSwissKnife:reflection:master-SNAPSHOT\"/gi" app/build.gradle
+          currentCommit=$(git rev-parse HEAD | cut -c2-10)
+          perl -i -pe "s/project\(\"\:core\"\)/\"com.github.xmartlabs.AndroidSwissKnife:core:$currentCommit\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:navigation\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation:$currentCommit\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:navigation-debug\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation-debug:$currentCommit\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:reflection\"\)/\"com.github.xmartlabs.AndroidSwissKnife:reflection:$currentCommit\"/gi" app/build.gradle
       - name: Build Sample app with master dependencies
         run: ./gradlew build -Dhttp.socketTimeout=80000 -Dhttp.connectionTimeout=80000 --refresh-dependencies

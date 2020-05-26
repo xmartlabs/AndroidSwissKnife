@@ -1,5 +1,4 @@
 # AndroidSwissKnife
-![Check and compile](https://github.com/xmartlabs/AndroidSwissKnife/workflows/Check%20and%20compile/badge.svg)
 ![Check and compile](https://github.com/xmartlabs/AndroidSwissKnife/workflows/Check%20and%20compile/badge.svg?branch=master)
 [![Release](https://jitpack.io/v/xmartlabs/AndroidSwissKnife.svg)](https://jitpack.io/#xmartlabs/AndroidSwissKnife)
 
