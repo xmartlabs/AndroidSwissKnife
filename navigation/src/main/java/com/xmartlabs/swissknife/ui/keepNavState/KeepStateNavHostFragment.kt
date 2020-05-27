@@ -1,4 +1,4 @@
-package com.xmartlabs.swissknife.ui.keep_nav_state
+package com.xmartlabs.swissknife.ui.keepNavState
 
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -17,9 +17,9 @@ class KeepStateNavHostFragment : NavHostFragment() {
 
   override fun onCreateNavController(navController: NavController) {
     navController.navigatorProvider += KeepStateNavigator(
-      requireContext(),
-      childFragmentManager,
-      containerId
+        requireContext(),
+        childFragmentManager,
+        containerId
     )
     super.onCreateNavController(navController)
   }

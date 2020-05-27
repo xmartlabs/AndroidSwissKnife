@@ -32,10 +32,10 @@ fun View.disable() = run { isEnabled = false }
 
 /** Adds padding to the view */
 fun View.applyPadding(
-  left: Int = paddingLeft,
-  top: Int = paddingTop,
-  right: Int = paddingRight,
-  bottom: Int = paddingBottom
+    left: Int = paddingLeft,
+    top: Int = paddingTop,
+    right: Int = paddingRight,
+    bottom: Int = paddingBottom
 ) = setPadding(left, top, right, bottom)
 
 /** Check if a view is overlapped with another view */

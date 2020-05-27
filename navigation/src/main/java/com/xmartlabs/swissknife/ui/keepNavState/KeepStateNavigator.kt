@@ -1,4 +1,4 @@
-package com.xmartlabs.swissknife.ui.keep_nav_state
+package com.xmartlabs.swissknife.ui.keepNavState
 
 import android.content.Context
 import android.os.Bundle
@@ -14,16 +14,16 @@ import androidx.navigation.fragment.FragmentNavigator
  */
 @Navigator.Name("keep_state_fragment") // `keep_state_fragment` is used in navigation xml
 class KeepStateNavigator(
-  private val context: Context,
-  private val childFragmentManager: FragmentManager, // Should pass childFragmentManager.
-  private val containerId: Int
+    private val context: Context,
+    private val childFragmentManager: FragmentManager, // Should pass childFragmentManager.
+    private val containerId: Int
 ) : FragmentNavigator(context, childFragmentManager, containerId) {
 
   override fun navigate(
-    destination: Destination,
-    args: Bundle?,
-    navOptions: NavOptions?,
-    navigatorExtras: Navigator.Extras?
+      destination: Destination,
+      args: Bundle?,
+      navOptions: NavOptions?,
+      navigatorExtras: Navigator.Extras?
   ): NavDestination? {
     val tag = destination.id.toString()
     val transaction = childFragmentManager.beginTransaction()

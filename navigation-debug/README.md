@@ -21,6 +21,6 @@ dependencies {
 
 ## Module's content:
 
-### [NavigationDebugExtensions](./src/main/java/com/xmartlabs/swissknife/navigationdebug/NavigationDebugExtensions.kt)
+### [NavigationDebugExtensions](src/main/java/com/xmartlabs/swissknife/navigationdebug/extensions/NavigationDebugExtensions.kt)
 It contains a series of extensions to log the current navigation graph state.
 The extensions uses reflection, so it's recommended used only in debug mode.

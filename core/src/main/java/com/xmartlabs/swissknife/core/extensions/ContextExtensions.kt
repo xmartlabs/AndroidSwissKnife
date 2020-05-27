@@ -37,8 +37,8 @@ fun Context.hasNetworkConnection(): Boolean {
   val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
   return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-    val nw = connectivityManager.activeNetwork ?: return false
-    val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
+    val actNw = connectivityManager.activeNetwork
+        ?.let { connectivityManager.getNetworkCapabilities(it) } ?: return false
     actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
         actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
         actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||

@@ -8,7 +8,6 @@ import android.content.Intent
 import android.graphics.Rect
 import android.view.inputmethod.InputMethodManager
 
-
 /** Hides the keyboard, if visible.  */
 fun Activity.hideKeyboard() {
   val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

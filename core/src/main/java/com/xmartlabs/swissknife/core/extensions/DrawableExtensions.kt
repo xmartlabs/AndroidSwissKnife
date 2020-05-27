@@ -8,4 +8,3 @@ import android.graphics.drawable.BitmapDrawable
 
 /** Transforms a [Bitmap] into a [BitmapDrawable] */
 fun Bitmap.toBitmapDrawable() = BitmapDrawable(Resources.getSystem(), this)
-
