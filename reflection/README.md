@@ -8,5 +8,5 @@ It contains some extensions that help you to work with reflection.
 
 ## Module's content:
 
-### [ReflectionExtensions](./src/main/java/com/xmartlabs/swissknife/reflection/ReflectionExtensions.kt)
+### [ReflectionExtensions](src/main/java/com/xmartlabs/swissknife/reflection/extensions/ReflectionExtensions.kt)
 It contains a series of extensions to manipulate private variables and execute private methods.

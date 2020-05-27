@@ -8,14 +8,14 @@ It contains the core extensions needed when you are dealing with the [Android Na
 
 ## Module's content:
 
-### [NavigationExtensions](./src/main/java/com/xmartlabs/swissknife/navigation/NavigationExtensions.kt)
+### [NavigationExtensions](src/main/java/com/xmartlabs/swissknife/ui/extensions/NavigationExtensions.kt)
 A series of extensions to navigate safely.
 Suppose that you have a button that navigates from the screen `A` to the screen `B`.
 If the user clicks this button twice quickly, the first time will navigate from `A` to `B`.
 However, the second one the navigation component will try to navigate from `A` to `B` making crash the app because the current node is `B`.
 These extensions help to avoid these cases.
 
-### [Keep Nav State](./src/main/java/com/xmartlabs/swissknife/navigation/keep_nav_state)
+### [Keep Nav State](src/main/java/com/xmartlabs/swissknife/ui/keepNavState)
 This package, contains the [`KeepStateNavigator`] class, which saves the Fragment state, when the fragment is removed from the Fragment Manager.
 The navigator defines the `keep_state_fragment` tag, that should be used in the navigation graph to indicates to use this Navigator.
 For example, your graph will look something like:
@@ -28,7 +28,7 @@ The parent fragment can define the child navigation fragment as:
     android:id="@id/keepStateNavHostContentFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="com.xmartlabs.swissknife.navigation.keep_nav_state.KeepStateNavHostFragment"
+    android:name="com.xmartlabs.swissknife.ui.keepNavState.KeepStateNavHostFragment"
     app:navGraph="@navigation/nav_graph"
     />
 ```
@@ -67,5 +67,5 @@ The Navigation graph will look like:
 </navigation>
 ```
 
-[`KeepStateNavigator`]: ./src/main/java/com/xmartlabs/swissknife/navigation/keep_nav_state/KeepStateNavigator.kt
-[`KeepStateNavHostFragment`]: ./src/main/java/com/xmartlabs/swissknife/navigation/keep_nav_state/KeepStateNavHostFragment.kt
+[`KeepStateNavigator`]: src/main/java/com/xmartlabs/swissknife/ui/keepNavState/KeepStateNavigator.kt
+[`KeepStateNavHostFragment`]: src/main/java/com/xmartlabs/swissknife/ui/keepNavState/KeepStateNavHostFragment.kt

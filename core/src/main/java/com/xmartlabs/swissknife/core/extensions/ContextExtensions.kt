@@ -5,10 +5,27 @@ package com.xmartlabs.swissknife.core.extensions
 import android.annotation.SuppressLint
 import android.content.ClipboardManager
 import android.content.Context
+import android.graphics.Point
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.LayoutInflater
+import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RequiresPermission
+
+/** Provides the [LayoutInflater] from [Context]. */
+val Context.layoutInflater
+  get() = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+/** Provides the [WindowManager] from [Context].*/
+val Context.windowManager
+  get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+
+/** Provides the [InputMethodManager] from [Context].*/
+val Context.inputMethodManager
+  get() = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
 /**
  * Uses the [ConnectivityManager] class to determine whether the device is connected to the internet or not.
@@ -20,8 +37,8 @@ fun Context.hasNetworkConnection(): Boolean {
   val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
   return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-    val nw = connectivityManager.activeNetwork ?: return false
-    val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
+    val actNw = connectivityManager.activeNetwork
+        ?.let { connectivityManager.getNetworkCapabilities(it) } ?: return false
     actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
         actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
         actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||
@@ -32,6 +49,12 @@ fun Context.hasNetworkConnection(): Boolean {
     @Suppress("DEPRECATION")
     nwInfo.isConnected
   }
+}
+
+/** Shows the keyboard */
+fun Context.showKeyboard(focusView: View) {
+  focusView.requestFocus()
+  inputMethodManager.showSoftInput(focusView, 0)
 }
 
 /**
@@ -52,3 +75,23 @@ fun Context.copyTextToClipboard(text: String) {
     clipboard.setPrimaryClip(clip)
   }
 }
+
+/** Returns the navigation bar height */
+fun Context.getNavigationBarHeight(): Int {
+  val resId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+  return if (resId > 0) this.resources.getDimensionPixelSize(resId) else 0
+}
+
+/** Returns the status bar height */
+fun Context.getStatusBarHeight(): Int {
+  val resId = resources.getIdentifier("status_bar_height", "dimen", "android")
+  return if (resId > 0) this.resources.getDimensionPixelSize(resId) else 0
+}
+
+/** Method used to easily retrieve display size from [Context]. */
+fun Context.getDisplaySize() = Point().apply {
+  windowManager.defaultDisplay.getSize(this)
+}
+
+/** Extension method to display Width for Context. */
+fun Context.displayWidth(): Int = getDisplaySize().x

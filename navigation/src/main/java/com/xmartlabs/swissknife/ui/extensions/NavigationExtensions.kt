@@ -1,4 +1,4 @@
-package com.xmartlabs.swissknife.navigation
+package com.xmartlabs.swissknife.ui.extensions
 
 import android.os.Bundle
 import androidx.annotation.IdRes
@@ -19,10 +19,10 @@ import androidx.navigation.Navigator
  * @param navigatorExtras extras to pass to the Navigator
  */
 fun NavController.navigateSafe(
-  @IdRes resId: Int,
-  args: Bundle? = null,
-  navOptions: NavOptions? = null,
-  navExtras: Navigator.Extras? = null
+    @IdRes resId: Int,
+    args: Bundle? = null,
+    navOptions: NavOptions? = null,
+    navExtras: Navigator.Extras? = null
 ) {
   val action = currentDestination?.getAction(resId) ?: graph.getAction(resId)
   if (action != null && currentDestination?.id != action.destinationId) {
@@ -39,8 +39,8 @@ fun NavController.navigateSafe(
  * @param navOptions special options for this navigation operation
  */
 fun NavController.navigateSafe(
-  direction: NavDirections,
-  navOptions: NavOptions? = null
+    direction: NavDirections,
+    navOptions: NavOptions? = null
 ) {
   val action = currentDestination?.getAction(direction.actionId) ?: graph.getAction(direction.actionId)
   if (action != null && currentDestination?.id != action.destinationId) {

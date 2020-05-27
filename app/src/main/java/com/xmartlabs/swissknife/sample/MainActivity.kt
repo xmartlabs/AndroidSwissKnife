@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.xmartlabs.swissknife.core.Logger
-import com.xmartlabs.swissknife.navigationdebug.setupOnDestinationChangedLogger
+import com.xmartlabs.swissknife.navigationdebug.extensions.setupOnDestinationChangedLogger
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
