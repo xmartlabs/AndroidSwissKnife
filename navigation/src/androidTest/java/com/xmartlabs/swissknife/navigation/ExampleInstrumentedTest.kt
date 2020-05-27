@@ -1,4 +1,4 @@
-package com.xmartlabs.swissknife.ui
+package com.xmartlabs.swissknife.navigation
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
