@@ -1,4 +1,4 @@
-package com.xmartlabs.swissknife.navigation
+package com.xmartlabs.swissknife.ui
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

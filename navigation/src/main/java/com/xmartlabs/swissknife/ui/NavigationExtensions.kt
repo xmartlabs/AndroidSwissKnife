@@ -1,4 +1,4 @@
-package com.xmartlabs.swissknife.navigation
+package com.xmartlabs.swissknife.ui
 
 import android.os.Bundle
 import androidx.annotation.IdRes

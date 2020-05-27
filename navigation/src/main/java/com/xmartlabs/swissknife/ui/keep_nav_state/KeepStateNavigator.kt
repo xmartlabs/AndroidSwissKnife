@@ -1,4 +1,4 @@
-package com.xmartlabs.swissknife.navigation.keep_nav_state
+package com.xmartlabs.swissknife.ui.keep_nav_state
 
 import android.content.Context
 import android.os.Bundle

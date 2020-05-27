@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.xmartlabs.swissknife.navigation.navigateSafe
+import com.xmartlabs.swissknife.ui.navigateSafe
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
