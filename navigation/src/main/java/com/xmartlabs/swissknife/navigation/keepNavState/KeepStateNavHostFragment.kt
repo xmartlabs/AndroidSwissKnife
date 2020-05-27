@@ -1,11 +1,11 @@
-package com.xmartlabs.swissknife.ui.keepNavState
+package com.xmartlabs.swissknife.navigation.keepNavState
 
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.plusAssign
-import com.xmartlabs.swissknife.ui.R
+import com.xmartlabs.swissknife.navigation.R
 
 /**
  * [NavHostFragment] with [KeepStateNavigator] support.
