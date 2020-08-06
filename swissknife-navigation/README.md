@@ -4,7 +4,7 @@ It contains the core extensions needed when you are dealing with the [Android Na
 
 ## Dependencies:
 - [Navigation Fragment Dependency (`androidx.navigation:navigation-fragment-ktx`)](https://developer.android.com/jetpack/androidx/releases/navigation).
-- [Core Module](../core) 
+- [Core Module](../swissknife-core)
 
 ## Module's content:
 

@@ -5,19 +5,19 @@ If you want to include this dependency only in debug mode, you can use `debugImp
 ```groovy
 dependencies {
     // Only include the dependency in debug builds
-    debugImplementation 'com.github.xmartlabs.AndroidSwissKnife:navigation-debug:$master-latest-hash-commit'
+    debugImplementation 'com.github.xmartlabs.AndroidSwissKnife:swissknife-navigation-debug:$master-latest-hash-commit'
 
     // Only include the dependency in dev's flavour builds
-    devImplementation 'com.github.xmartlabs.AndroidSwissKnife:navigation-debug:$master-latest-hash-commit'
+    devImplementation 'com.github.xmartlabs.AndroidSwissKnife:swissknife-navigation-debug:$master-latest-hash-commit'
 }
 ```
 
 
 ## Dependencies:
 - [Navigation Fragment Dependency (`androidx.navigation:navigation-fragment-ktx`)](https://developer.android.com/jetpack/androidx/releases/navigation).
-- [Core Module](../core) 
-- [Navigation Module](../navigation) 
-- [Reflection Module](../reflection) 
+- [Core Module](../swissknife-core)
+- [Navigation Module](../swissknife-navigation)
+- [Reflection Module](../swissknife-reflection)
 
 ## Module's content:
 

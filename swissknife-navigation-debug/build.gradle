@@ -24,9 +24,9 @@ android {
 }
 
 dependencies {
-    api project(':core')
-    api project(':navigation')
-    implementation project(':reflection')
+    api project(':swissknife-core')
+    api project(':swissknife-navigation')
+    implementation project(':swissknife-reflection')
 
     implementation deps.kotlin.core
     implementation deps.androidX.navigation.fragment
