@@ -43,6 +43,6 @@ jobs:
         if: failure()
         with:
           name: Lints report
-          path: ./**/build/reports/lint-results.xml
+          path: ./**/build/reports/lint-results.html
       - name: Build
         run: ./gradlew build
