@@ -1,5 +1,6 @@
 package com.xmartlabs.swissknife.navigation.keepNavState
 
+import android.content.Context
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -21,6 +22,7 @@ class KeepStateNavHostFragment : NavHostFragment() {
         childFragmentManager,
         containerId
     )
+    context!!.getSystemService(Context.LOCATION_SERVICE);
     super.onCreateNavController(navController)
   }
 }

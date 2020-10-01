@@ -1,5 +1,6 @@
 package com.xmartlabs.swissknife.sample
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -13,6 +14,7 @@ import com.xmartlabs.swissknife.navigation.extensions.navigateSafe
 class FirstFragment : Fragment(R.layout.fragment_first) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    context!!.getSystemService(Context.LOCATION_SERVICE)
 
     view.findViewById<Button>(R.id.button_first).setOnClickListener {
       findNavController().navigateSafe(R.id.action_FirstFragment_to_SecondFragment)
