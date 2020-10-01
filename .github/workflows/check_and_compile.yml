@@ -39,10 +39,10 @@ jobs:
       - name: Android Lints
         run: ./gradlew lint
       - name: Upload Lint report
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.2.0
         if: failure()
         with:
           name: Lints report
-          path: app/build/reports/lint-results-devDebug.html
+          path: ./**/build/reports/lint-results.xml
       - name: Build
         run: ./gradlew build
