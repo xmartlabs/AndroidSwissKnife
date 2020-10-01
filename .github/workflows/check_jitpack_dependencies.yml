@@ -32,9 +32,9 @@ jobs:
       - name: Use master dependencies in app
         run: |
           currentCommit=$(git rev-parse HEAD | cut -c1-10)
-          perl -i -pe "s/project\(\"\:core\"\)/\"com.github.xmartlabs.AndroidSwissKnife:core:$currentCommit\"/gi" app/build.gradle
-          perl -i -pe "s/project\(\"\:navigation\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation:$currentCommit\"/gi" app/build.gradle
-          perl -i -pe "s/project\(\"\:navigation-debug\"\)/\"com.github.xmartlabs.AndroidSwissKnife:navigation-debug:$currentCommit\"/gi" app/build.gradle
-          perl -i -pe "s/project\(\"\:reflection\"\)/\"com.github.xmartlabs.AndroidSwissKnife:reflection:$currentCommit\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:swissknife-core\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-core:$currentCommit\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:swissknife-navigation\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-navigation:$currentCommit\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:swissknife-navigation-debug\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-navigation-debug:$currentCommit\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:swissknife-reflection\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-reflection:$currentCommit\"/gi" app/build.gradle
       - name: Build Sample app with master dependencies
         run: ./gradlew build -Dhttp.socketTimeout=100000 -Dhttp.connectionTimeout=100000 --refresh-dependencies

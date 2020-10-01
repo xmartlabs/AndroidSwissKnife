@@ -32,10 +32,10 @@ android {
 }
 
 dependencies {
-    implementation project(":core")
-    implementation project(":navigation")
-    implementation project(":navigation-debug")
-    implementation project(":reflection")
+    implementation project(":swissknife-core")
+    implementation project(":swissknife-navigation")
+    implementation project(":swissknife-navigation-debug")
+    implementation project(":swissknife-reflection")
 
     implementation deps.androidX.appcompat
     implementation deps.androidX.constraintLayout
