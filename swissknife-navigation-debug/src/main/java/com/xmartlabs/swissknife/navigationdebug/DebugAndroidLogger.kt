@@ -1,6 +1,5 @@
 package com.xmartlabs.swissknife.navigationdebug
 
-import android.content.Context
 import android.util.Log
 import com.xmartlabs.swissknife.core.Logger
 
