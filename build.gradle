@@ -3,6 +3,7 @@ buildscript {
     apply from: 'versions.gradle'
     addRepos(repositories)
     dependencies {
+        classpath buildscriptDeps.dependencyUpdates
         classpath buildscriptDeps.gradle
         classpath buildscriptDeps.detekt
         classpath buildscriptDeps.kotlin
@@ -11,6 +12,7 @@ buildscript {
 
 apply from: rootProject.file('versions.gradle')
 apply plugin: "io.gitlab.arturbosch.detekt"
+apply from: rootProject.file('scripts/dependency_updates.gradle')
 
 dependencies {
     detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$versions.detekt"
