@@ -1,5 +1,6 @@
 package com.xmartlabs.swissknife.navigation.keepNavState
 
+import android.annotation.SuppressLint
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -16,6 +17,7 @@ class KeepStateNavHostFragment : NavHostFragment() {
     get() = if (id != 0 && id != View.NO_ID) id else R.id.nav_host_fragment_container
 
   override fun onCreateNavController(navController: NavController) {
+    @SuppressLint("RestrictedApi")
     navController.navigatorProvider += KeepStateNavigator(
         requireContext(),
         childFragmentManager,
