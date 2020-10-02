@@ -19,7 +19,7 @@ class SessionRepository(context: Context) {
   private val dataStore = DataStoreSource(context.createDataStore(name = DATA_STORE_NAME), GsonDataStoreSerializer())
 
   val session: Flow<Session?>
-    get() = dataStore.getEntity(SESSION_REPOSITORY_KEY)
+    get() = dataStore.getEntity()
 
   suspend fun saveSession(session: Session?) =
       dataStore.putEntity(SESSION_REPOSITORY_KEY, session)

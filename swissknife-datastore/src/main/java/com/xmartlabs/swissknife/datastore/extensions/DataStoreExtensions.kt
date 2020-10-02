@@ -9,22 +9,31 @@ import com.xmartlabs.swissknife.datastore.DataStoreSerializer
 /**
  * Created by mirland on 01/10/20.
  */
-inline operator fun <reified T> MutablePreferences.set(key: String, serializer: DataStoreSerializer, value: T) {
-  when (T::class.java) {
+inline fun <reified T> MutablePreferences.set(key: String, serializer: DataStoreSerializer, value: T) =
+    set(key, serializer, T::class.java, value)
+
+inline fun <reified T> Preferences.get(key: String, serializer: DataStoreSerializer): T? =
+    get(key, serializer, T::class.java)
+
+inline fun <reified T> MutablePreferences.remove(key: String, serializer: DataStoreSerializer): T? =
+    remove(key, serializer, T::class.java)
+
+operator fun <T> MutablePreferences.set(key: String, serializer: DataStoreSerializer, aClass: Class<T>, value: T) {
+  when (aClass) {
     Int::class.java -> set(preferencesKey(key), value as Int)
     String::class.java -> set(preferencesKey(key), value as String)
     Boolean::class.java -> set(preferencesKey(key), value as Boolean)
     Float::class.java -> set(preferencesKey(key), value as Float)
     Long::class.java -> set(preferencesKey(key), value as Long)
     else -> {
-      val jsonValue = serializer.toString(value, T::class.java)
+      val jsonValue = serializer.toString(value, aClass)
       set(preferencesKey(key), jsonValue)
     }
   }
 }
 
-inline operator fun <reified T> Preferences.get(key: String, serializer: DataStoreSerializer): T? =
-    when (T::class.java) {
+operator fun <T> Preferences.get(key: String, serializer: DataStoreSerializer, aClass: Class<T>): T? =
+    when (aClass) {
       Int::class -> get(preferencesKey<Int>(key)) as T?
       String::class.java -> get(preferencesKey<String>(key)) as T?
       Boolean::class.java -> get(preferencesKey<Boolean>(key)) as T?
@@ -32,12 +41,12 @@ inline operator fun <reified T> Preferences.get(key: String, serializer: DataSto
       Long::class.java -> get(preferencesKey<Long>(key)) as T?
       else -> {
         val jsonValue = get(preferencesKey<String>(key))
-        serializer.fromString(jsonValue, T::class.java)
+        serializer.fromString(jsonValue, aClass)
       }
     }
 
-inline fun <reified T> MutablePreferences.remove(key: String, serializer: DataStoreSerializer)=
-    when (T::class.java) {
+fun <T> MutablePreferences.remove(key: String, serializer: DataStoreSerializer, aClass: Class<T>): T? =
+    when (aClass) {
       Int::class -> remove(preferencesKey<Int>(key)) as? T
       String::class.java -> remove(preferencesKey<String>(key)) as T?
       Boolean::class.java -> remove(preferencesKey<Boolean>(key)) as T?
@@ -45,6 +54,6 @@ inline fun <reified T> MutablePreferences.remove(key: String, serializer: DataSt
       Long::class.java -> remove(preferencesKey<Long>(key)) as T?
       else -> {
         val jsonValue = remove(preferencesKey<String>(key))
-        serializer.fromString(jsonValue, T::class.java)
+        serializer.fromString(jsonValue, aClass)
       }
     }
