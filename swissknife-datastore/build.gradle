@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -7,13 +7,12 @@ android {
     buildToolsVersion androidVersions.buildTools
 
     defaultConfig {
-        applicationId "com.xmartlabs.swissknife.sample"
         minSdkVersion androidVersions.minSdk
         targetSdkVersion androidVersions.targetSdk
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -27,26 +26,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    implementation project(":swissknife-core")
-    implementation project(":swissknife-datastore")
-    implementation project(":swissknife-navigation")
-    implementation project(":swissknife-navigation-debug")
-    implementation project(":swissknife-reflection")
+    api deps.androidX.dataStore
 
-    implementation deps.androidX.appcompat
-    implementation deps.androidX.constraintLayout
     implementation deps.androidX.core
-    implementation deps.androidX.navigation.fragment
-    implementation deps.androidX.navigation.ui
-    implementation deps.gson
     implementation deps.kotlin.core
-    implementation deps.material
-    implementation deps.timber
 
     testImplementation deps.junit
     androidTestImplementation deps.androidX.test.junit
