@@ -33,6 +33,7 @@ jobs:
         run: |
           currentCommit=$(git rev-parse HEAD | cut -c1-10)
           perl -i -pe "s/project\(\"\:swissknife-core\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-core:$currentCommit\"/gi" app/build.gradle
+          perl -i -pe "s/project\(\"\:swissknife-datastore\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-datastore:$currentCommit\"/gi" app/build.gradle
           perl -i -pe "s/project\(\"\:swissknife-navigation\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-navigation:$currentCommit\"/gi" app/build.gradle
           perl -i -pe "s/project\(\"\:swissknife-navigation-debug\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-navigation-debug:$currentCommit\"/gi" app/build.gradle
           perl -i -pe "s/project\(\"\:swissknife-reflection\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-reflection:$currentCommit\"/gi" app/build.gradle

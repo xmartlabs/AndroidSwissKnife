@@ -17,22 +17,27 @@ import kotlinx.coroutines.withContext
  */
 class DataStoreSource(
     private val dataStore: DataStore<Preferences>,
-    private val serializer: DataStoreSerializer,
-    private val backgroundDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val serializer: DataStoreEntitySerializer,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
-  inline fun <reified T> getEntity(key: String): Flow<T?> = getEntity(key, T::class.java)
-  suspend inline fun <reified T> putEntity(key: String, t: T) = putEntity(key, t, T::class.java)
-  suspend inline fun <reified T> removeEntity(key: String) = removeEntity(key, T::class.java)
+  inline fun <reified T> getEntity(key: String): Flow<T?> =
+      getEntity(key, T::class.java)
+
+  suspend inline fun <reified T> putEntity(key: String, t: T) =
+      putEntity(key, t, T::class.java)
+
+  suspend inline fun <reified T> removeEntity(key: String) =
+      removeEntity(key, T::class.java)
 
   fun <T> getEntity(key: String, aClass: Class<T>): Flow<T?> = dataStore.data
       .map { preferences ->
-        withContext(backgroundDispatcher) {
+        withContext(dispatcher) {
           preferences[key, serializer, aClass]
         }
       }
 
   suspend fun <T> putEntity(key: String, t: T, aClass: Class<T>) {
-    withContext(backgroundDispatcher) {
+    withContext(dispatcher) {
       dataStore.edit { settings ->
         settings[key, serializer, aClass] = t
       }
@@ -40,7 +45,7 @@ class DataStoreSource(
   }
 
   suspend fun <T> removeEntity(key: String, aClass: Class<T>) {
-    withContext(backgroundDispatcher) {
+    withContext(dispatcher) {
       dataStore.edit { settings ->
         settings.remove(key, serializer, aClass)
       }
