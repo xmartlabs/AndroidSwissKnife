@@ -30,7 +30,10 @@ To create a [DataStoreSource], you need to provide a [Jetpack DataStore], a [Dat
 ] to specify where you want to run the background tasks.
 
 ```kotlin
-  private val dataStoreSource = DataStoreSource(context.createDataStore(name = "my-data-store"), GsonDataStoreEntitySerializer())
+  private val dataStoreSource = DataStoreSource(
+      dataStore = context.createDataStore(name = "my-data-store"),
+      serializer = GsonDataStoreEntitySerializer()
+  )
 ```
 
 The [DataStoreSource] provides three methods to manage the data:
@@ -54,7 +57,10 @@ class SessionRepository(context: Context) {
     private const val SESSION_REPOSITORY_KEY = "session"
   }
 
-  private val dataStore = DataStoreSource(context.createDataStore(name = DATA_STORE_NAME), GsonDataStoreEntitySerializer())
+  private val dataStore = DataStoreSource(
+      context.createDataStore(name = DATA_STORE_NAME),
+       GsonDataStoreEntitySerializer()
+  )
 
   val session: Flow<Session?>
     get() = dataStore.getEntity(SESSION_REPOSITORY_KEY)
