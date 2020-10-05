@@ -5,10 +5,10 @@
 A library that contains a series of extensions, helpers, and useful classes used in most of [Xmartlabs' Android Projects](https://www.xmartlabs.com/).
 
 It's divided into a series of modules with different proposes:
-- [Core](/swissknife-core): Core extensions of the application, which extends Android and Kotlin features.
-- [Navigation](/swissknife-navigation): Navigation extensions and useful helper classes related to [Navigation Architecture Component].
-- [Navigation-debug](/swissknife-navigation-debug): A series of extensions and useful tools to debug and log important information of the [Navigation Architecture Component].
-- [Reflection](/swissknife-reflection): A series of extensions useful when you are dealing with Reflection.
+- [Core](./swissknife-core): Core extensions of the application, which extends Android and Kotlin features.
+- [Navigation](./swissknife-navigation): Navigation extensions and useful helper classes related to [Navigation Architecture Component].
+- [Navigation-debug](./swissknife-navigation-debug): A series of extensions and useful tools to debug and log important information of the [Navigation Architecture Component].
+- [Reflection](./swissknife-reflection): A series of extensions useful when you are dealing with Reflection.
 
 ## Setup
 Add library to project dependencies with JitPack.
