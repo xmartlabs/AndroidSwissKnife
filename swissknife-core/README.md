@@ -26,3 +26,5 @@ Extensions to work with animations.
 Extensions to change the view's background, for example to a ripple background.
 ### [ViewExtensions](./src/main/java/com/xmartlabs/swissknife/core/extensions/ViewExtensions.kt):
 Extensions to change the view's state, for example to make enabled or invisible a view.
+### [ViewGroupExtensions](src/main/java/com/xmartlabs/swissknife/core/extensions/ViewGroupExtensions.kt):
+Extensions that help to work with ViewGroup.
