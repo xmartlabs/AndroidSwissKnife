@@ -26,8 +26,8 @@ operator fun <T> MutablePreferences.set(key: String, serializer: DataStoreEntity
     Float::class.java -> set(preferencesKey(key), value as Float)
     Long::class.java -> set(preferencesKey(key), value as Long)
     else -> {
-      val jsonValue = serializer.toString(value, aClass)
-      set(preferencesKey(key), jsonValue)
+      val serializedValue = serializer.toString(value, aClass)
+      set(preferencesKey(key), serializedValue)
     }
   }
 }
@@ -40,8 +40,8 @@ operator fun <T> Preferences.get(key: String, serializer: DataStoreEntitySeriali
       Float::class.java -> get(preferencesKey<Float>(key)) as T?
       Long::class.java -> get(preferencesKey<Long>(key)) as T?
       else -> {
-        val jsonValue = get(preferencesKey<String>(key))
-        serializer.fromString(jsonValue, aClass)
+        val serializedValue = get(preferencesKey<String>(key))
+        serializer.fromString(serializedValue, aClass)
       }
     }
 
@@ -53,7 +53,7 @@ fun <T> MutablePreferences.remove(key: String, serializer: DataStoreEntitySerial
       Float::class.java -> remove(preferencesKey<Float>(key)) as T?
       Long::class.java -> remove(preferencesKey<Long>(key)) as T?
       else -> {
-        val jsonValue = remove(preferencesKey<String>(key))
-        serializer.fromString(jsonValue, aClass)
+        val serializedValue = remove(preferencesKey<String>(key))
+        serializer.fromString(serializedValue, aClass)
       }
     }
