@@ -38,4 +38,4 @@ jobs:
           perl -i -pe "s/project\(\"\:swissknife-navigation-debug\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-navigation-debug:$currentCommit\"/gi" app/build.gradle
           perl -i -pe "s/project\(\"\:swissknife-reflection\"\)/\"com.github.xmartlabs.AndroidSwissKnife:swissknife-reflection:$currentCommit\"/gi" app/build.gradle
       - name: Build Sample app with master dependencies
-        run: ./gradlew build -Dhttp.socketTimeout=100000 -Dhttp.connectionTimeout=100000 --refresh-dependencies
+        run: ./gradlew build -Dhttp.socketTimeout=300000 -Dhttp.connectionTimeout=300000 --refresh-dependencies
