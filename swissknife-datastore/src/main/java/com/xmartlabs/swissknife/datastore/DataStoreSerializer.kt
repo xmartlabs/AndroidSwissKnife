@@ -5,7 +5,15 @@ import androidx.annotation.WorkerThread
 /**
  * Created by mirland on 01/10/20.
  */
-interface DataStoreEntitySerializer {
+interface DataStoreEntitySerializer<T> {
+  @WorkerThread
+  fun toString(t: T): String
+
+  @WorkerThread
+  fun fromString(value: String?): T?
+}
+
+interface DataStoreSerializer {
   @WorkerThread
   fun <T> toString(t: T, aClass: Class<T>): String
 
@@ -13,6 +21,3 @@ interface DataStoreEntitySerializer {
   fun <T> fromString(value: String?, aClass: Class<T>): T?
 }
 
-inline fun <reified T> DataStoreEntitySerializer.toString(t: T) = toString(t, T::class.java)
-
-inline fun <reified T> DataStoreEntitySerializer.fromString(value: String?) = fromString(value, T::class.java)

@@ -2,12 +2,12 @@
 It contains a Custom [DataStoreSource] that provides the ability to store custom entities types without the requirement of using Protocol Buffers.
 
 [Jetpack DataStore] provides two implementations, one that stores key-value primitives types and another to stores typed objects with protocol buffers.
-This library provides a DataStore implementation that enables storing typed objects, just providing a [DataStoreEntitySerializer].
+This library provides a DataStore implementation that enables storing typed objects, just providing a [DataStoreSerializer].
 
-The [DataStoreEntitySerializer] is an interface with two methods, one to serialize an entity from a string and the other to serialize the entity into a string.
+The [DataStoreSerializer] is an interface with two methods, one to serialize an entity from a string and the other to serialize the entity into a string.
 
 ```kotlin
-interface DataStoreEntitySerializer {
+interface DataStoreSerializer {
   @WorkerThread
   fun <T> toString(t: T, aClass: Class<T>): String
 
@@ -18,7 +18,7 @@ interface DataStoreEntitySerializer {
 You can choose what serializer do you prefer, for example, if you are using [Gson] you could define a `GsonSerializer` like this:
 
 ```kotlin
-class GsonDataStoreEntitySerializer(private val gson: Gson = Gson()) : DataStoreEntitySerializer {
+class GsonDataStoreEntitySerializer(private val gson: Gson = Gson()) : DataStoreSerializer {
   override fun <T> toString(t: T, aClass: Class<T>): String = gson.toJson(t)
 
   override fun <T> fromString(value: String?, aClass: Class<T>): T? = gson.fromJson(value, aClass)
@@ -39,13 +39,25 @@ To create a [DataStoreSource], you need to provide a [Jetpack DataStore], a [Dat
 The [DataStoreSource] provides three methods to manage the data:
 
 ```kotlin
-  inline fun <reified T> getEntity(key: String): Flow<T?> = getEntity(key, T::class.java)
-  
-  suspend inline fun <reified T> putEntity(key: String, t: T) = putEntity(key, t, T::class.java)
+  suspend inline fun <reified T> getEntity(
+      key: String,
+      serializer: DataStoreEntitySerializer<T>? = null
+  )
 
-  suspend inline fun <reified T> removeEntity(key: String) = removeEntity(key, T::class.java)
+  suspend inline fun <reified T> putEntity(
+      key: String,
+      t: T,
+      serializer: DataStoreEntitySerializer<T>? = null
+  ): T
+
+  suspend inline fun <reified T> removeEntity(
+      key: String,
+      serializer: DataStoreEntitySerializer<T>? = null
+  ): T
 
 ```
+
+Each method accept a custom [DataStoreEntitySerializer] to a specify custom serialized for specific type.
 
 After that you can create a storage to use the [DataStoreSource].
 In the sample app, it's defined a [SessionRepository] which manages the app's session information.
@@ -75,7 +87,8 @@ class SessionRepository(context: Context) {
 - [Core Module](../swissknife-core)
 
 [DataStoreSource]: src/main/java/com/xmartlabs/swissknife/datastore/DataStoreSource.kt
-[DataStoreEntitySerializer]: src/main/java/com/xmartlabs/swissknife/datastore/DataStoreEntitySerializer.kt
+[DataStoreSerializer]: src/main/java/com/xmartlabs/swissknife/datastore/DataStoreSerializer.kt
+[DataStoreEntitySerializer]: src/main/java/com/xmartlabs/swissknife/datastore/DataStoreSerializer.kt
 [Jetpack DataStore]: https://developer.android.com/topic/libraries/architecture/datastore
 [Gson]: https://github.com/google/gson
 [SessionRepository]: ../app/src/main/java/com/xmartlabs/swissknife/sample/data/SessionRepository.kt
