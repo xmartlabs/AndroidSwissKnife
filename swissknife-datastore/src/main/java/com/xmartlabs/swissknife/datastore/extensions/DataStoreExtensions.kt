@@ -1,9 +1,12 @@
 package com.xmartlabs.swissknife.datastore.extensions
 
-import androidx.datastore.preferences.MutablePreferences
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.preferencesKey
-import androidx.datastore.preferences.remove
+import androidx.datastore.preferences.core.MutablePreferences
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.floatPreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.xmartlabs.swissknife.datastore.DataStoreEntitySerializer
 
 /**
@@ -20,40 +23,40 @@ inline fun <reified T> MutablePreferences.remove(key: String, serializer: DataSt
 
 operator fun <T> MutablePreferences.set(key: String, serializer: DataStoreEntitySerializer, aClass: Class<T>, value: T) {
   when (aClass) {
-    Int::class.java -> set(preferencesKey(key), value as Int)
-    String::class.java -> set(preferencesKey(key), value as String)
-    Boolean::class.java -> set(preferencesKey(key), value as Boolean)
-    Float::class.java -> set(preferencesKey(key), value as Float)
-    Long::class.java -> set(preferencesKey(key), value as Long)
+    Int::class.java -> set(intPreferencesKey(key), value as Int)
+    String::class.java -> set(stringPreferencesKey(key), value as String)
+    Boolean::class.java -> set(booleanPreferencesKey(key), value as Boolean)
+    Float::class.java -> set(floatPreferencesKey(key), value as Float)
+    Long::class.java -> set(longPreferencesKey(key), value as Long)
     else -> {
       val serializedValue = serializer.toString(value, aClass)
-      set(preferencesKey(key), serializedValue)
+      set(stringPreferencesKey(key), serializedValue)
     }
   }
 }
 
 operator fun <T> Preferences.get(key: String, serializer: DataStoreEntitySerializer, aClass: Class<T>): T? =
     when (aClass) {
-      Int::class -> get(preferencesKey<Int>(key)) as T?
-      String::class.java -> get(preferencesKey<String>(key)) as T?
-      Boolean::class.java -> get(preferencesKey<Boolean>(key)) as T?
-      Float::class.java -> get(preferencesKey<Float>(key)) as T?
-      Long::class.java -> get(preferencesKey<Long>(key)) as T?
+      Int::class -> get(intPreferencesKey(key)) as T?
+      String::class.java -> get(stringPreferencesKey(key)) as T?
+      Boolean::class.java -> get(booleanPreferencesKey(key)) as T?
+      Float::class.java -> get(floatPreferencesKey(key)) as T?
+      Long::class.java -> get(longPreferencesKey(key)) as T?
       else -> {
-        val serializedValue = get(preferencesKey<String>(key))
+        val serializedValue = get(stringPreferencesKey(key))
         serializer.fromString(serializedValue, aClass)
       }
     }
 
 fun <T> MutablePreferences.remove(key: String, serializer: DataStoreEntitySerializer, aClass: Class<T>): T? =
     when (aClass) {
-      Int::class -> remove(preferencesKey<Int>(key)) as? T
-      String::class.java -> remove(preferencesKey<String>(key)) as T?
-      Boolean::class.java -> remove(preferencesKey<Boolean>(key)) as T?
-      Float::class.java -> remove(preferencesKey<Float>(key)) as T?
-      Long::class.java -> remove(preferencesKey<Long>(key)) as T?
+      Int::class -> remove(intPreferencesKey(key)) as? T
+      String::class.java -> remove(stringPreferencesKey(key)) as T?
+      Boolean::class.java -> remove(booleanPreferencesKey(key)) as T?
+      Float::class.java -> remove(floatPreferencesKey(key)) as T?
+      Long::class.java -> remove(longPreferencesKey(key)) as T?
       else -> {
-        val serializedValue = remove(preferencesKey<String>(key))
+        val serializedValue = remove(stringPreferencesKey(key))
         serializer.fromString(serializedValue, aClass)
       }
     }
