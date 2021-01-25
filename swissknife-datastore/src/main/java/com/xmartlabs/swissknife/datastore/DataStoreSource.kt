@@ -1,8 +1,8 @@
 package com.xmartlabs.swissknife.datastore
 
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.edit
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import com.xmartlabs.swissknife.datastore.extensions.get
 import com.xmartlabs.swissknife.datastore.extensions.remove
 import com.xmartlabs.swissknife.datastore.extensions.set
