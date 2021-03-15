@@ -51,14 +51,16 @@ After that you can create a storage to use the [DataStoreSource].
 In the sample app, it's defined a [SessionRepository] which manages the app's session information.
 
 ```kotlin
+private const val DATA_STORE_NAME = "data_store_name"
+private val Context.appSessionDataStore: DataStore<Preferences> by preferencesDataStore(name = DATA_STORE_NAME)
+
 class SessionRepository(context: Context) {
   companion object {
-    private const val DATA_STORE_NAME = "data_store_name"
     private const val SESSION_REPOSITORY_KEY = "session"
   }
 
   private val dataStore = DataStoreSource(
-      context.createDataStore(name = DATA_STORE_NAME),
+      context.appSessionDataStore(),
        GsonDataStoreEntitySerializer()
   )
 
