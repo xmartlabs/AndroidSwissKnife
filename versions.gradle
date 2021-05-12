@@ -12,21 +12,21 @@ ext.androidVersions = androidVersions
 
 ext.deps = [:]
 def versions = [:]
-versions.androidXAnnotations = "1.1.0"
+versions.androidXAnnotations = "1.2.0"
 versions.androidXAppCompact = "1.2.0"
 versions.androidXConstraintLayout = "2.0.4"
 versions.androidXCore = "1.3.2"
-versions.androidXDataStore = "1.0.0-alpha08"
+versions.androidXDataStore = "1.0.0-beta01"
 versions.androidXTestEspresso = "3.3.0"
 versions.androidXTestJunit = "1.1.2"
-versions.archNavigationArchComponent = "2.3.4"
+versions.archNavigationArchComponent = "2.3.5"
 versions.dependencyUpdates = '0.38.0'
 versions.detekt = "1.16.0"
-versions.gradle = "4.1.2"
+versions.gradle = "4.2.0"
 versions.gson = "2.8.6"
 versions.material = "1.3.0"
 versions.junit = "4.13.2"
-versions.kotlin = "1.4.31"
+versions.kotlin = "1.5.0"
 versions.timber = "4.7.1"
 versions.tooLargeTool = "915ad99e83"
 ext.versions = versions
@@ -72,7 +72,6 @@ buildscriptDeps.detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$vers
 buildscriptDeps.dependencyUpdates = "com.github.ben-manes:gradle-versions-plugin:$versions.dependencyUpdates"
 buildscriptDeps.gradle = "com.android.tools.build:gradle:$versions.gradle"
 buildscriptDeps.kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-buildscriptDeps.kotlinExtensions = "org.jetbrains.kotlin:kotlin-android-extensions:$versions.kotlin"
 ext.buildscriptDeps = buildscriptDeps
 
 def addRepos(RepositoryHandler handler) {
