@@ -6,14 +6,16 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.xmartlabs.swissknife.core.Logger
 import com.xmartlabs.swissknife.navigationdebug.extensions.setupOnDestinationChangedLogger
-import kotlinx.android.synthetic.main.activity_main.*
+import com.xmartlabs.swissknife.sample.databinding.ActivityMainBinding
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-    setSupportActionBar(toolbar)
+    val binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    setSupportActionBar(binding.toolbar)
     setupTimber()
 
     findNavController(R.id.nav_host_fragment)
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
               .d(message)
         })
 
-    fab.setOnClickListener { view ->
+    binding.fab.setOnClickListener { view ->
       Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
           .setAction("Action", null).show()
     }
